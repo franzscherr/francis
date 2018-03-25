@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 
 from IPython import embed
 
-from .francis.serialize import pickle, depickle
-from .francis.plotting import figax, oax, error_curve
-from .francis.data_tools import equi_sample, datetimes_to_timestamps, timestamps_to_datetimes, inverse_dict, flatten, reshape
+from .serialize import pickle, depickle
+from .plotting import figax, oax, error_curve
+from .data_tools import equi_sample, datetimes_to_timestamps, timestamps_to_datetimes, inverse_dict, flatten, reshape
 
 
 exp_user = os.path.expanduser
