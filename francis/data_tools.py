@@ -51,7 +51,7 @@ def datetimes_to_timestamps(datetimes, n_processes=cpu_count, convert_to_numpy_a
         timestamps = list(map(dt.datetime.timestamp, datetimes))
 
     if convert_to_numpy_array:
-        timestamps = np.array(datetimes)
+        timestamps = np.array(timestamps)
     return timestamps
 
 
