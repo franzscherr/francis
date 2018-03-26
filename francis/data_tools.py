@@ -43,8 +43,7 @@ def timestamps_to_datetimes(timestamps, n_processes=cpu_count, convert_to_numpy_
     return datetimes
 
 
-def datetimes_to_timestamps(datetimes, n_processes=None, convert_to_numpy_array=True):
-
+def datetimes_to_timestamps(datetimes, n_processes=cpu_count, convert_to_numpy_array=True):
     if n_processes > 1:
         with mp.Pool(n_processes) as p:
             timestamps = p.map(lambda t: t.timestamp(), datetimes)
