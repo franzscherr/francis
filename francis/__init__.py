@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from IPython import embed
 
 from .serialize import pickle, depickle
-from .plotting import figax, oax, error_curve
+from .plotting import figax, oax, error_curve, parallel_coordinates
 from .data_tools import equi_sample, datetimes_to_timestamps, timestamps_to_datetimes, inverse_dict, flatten, reshape
 
 
@@ -58,6 +58,6 @@ __all__ = ['os', 'pkl', 'json', 'dt', 'now',
            'np', 'sc', 'tf', 'slim',
            'ipython',
            'pickle', 'depickle',
-           'plt', 'figax', 'oax', 'error_curve', 'exp_user', 'sys',
+           'plt', 'figax', 'oax', 'parallel_coordinates', 'error_curve', 'exp_user', 'sys',
            'get_console_logger', 'get_file_logger',
            'equi_sample', 'datetimes_to_timestamps', 'timestamps_to_datetimes', 'inverse_dict', 'flatten', 'reshape']
