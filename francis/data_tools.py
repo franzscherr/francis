@@ -102,10 +102,10 @@ def m_s(data, axis=None):
 
 def linear_smooth(data, n=50):
     k = np.ones(n) / n
-    x_ex = np.concatenate(([x[0]] * n, data))
+    x_ex = np.concatenate(([data[0]] * n, data))
     return np.convolve(x_ex, k)[n:-n + 1]
 
 
 def savgol_smooth(data, n=7):
-    return savgol_filter(x, n, 3, mode='nearest')
+    return savgol_filter(data, n, 3, mode='nearest')
 
