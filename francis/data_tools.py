@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.signal import savgol_filter
 import multiprocessing as mp
 import datetime as dt
 
@@ -97,4 +98,14 @@ def m_s(data, axis=None):
     m = np.mean(data, axis=axis)
     s = np.std(data, axis=axis)
     return m, s
+
+
+def linear_smooth(data, n=50):
+    k = np.ones(n) / n
+    x_ex = np.concatenate(([x[0]] * n, data))
+    return np.convolve(x_ex, k)[n:-n + 1]
+
+
+def savgol_smooth(data, n=7):
+    return savgol_filter(x, n, 3, mode='nearest')
 
