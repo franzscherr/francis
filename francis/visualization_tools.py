@@ -3,6 +3,43 @@ import numpy as np
 from IPython.display import clear_output, Image, display, HTML
 
 
+def remove_3d_panes(ax):
+    ax.w_xaxis.set_pane_color((1., 1., 1., 0.))
+    ax.w_yaxis.set_pane_color((1., 1., 1., 0.))
+    ax.w_zaxis.set_pane_color((1., 1., 1., 0.))
+
+
+def remove_3d_lines(ax):
+    ax.w_xaxis.line.set_color((1., 1., 1., 0.))
+    ax.w_yaxis.line.set_color((1., 1., 1., 0.))
+    ax.w_zaxis.line.set_color((1., 1., 1., 0.))
+
+
+def remove_3d_accessoires(ax):
+    remove_3d_panes(ax)
+    remove_3d_lines(ax)
+    ax.xaxis.set_ticks([])
+    ax.yaxis.set_ticks([])
+    ax.zaxis.set_ticks([])
+
+
+def plot_3d_axes(xmin=0, xmax=1, ymin=0, ymax=1, zmin=0, zmax=1):
+    ax.plot([xmin, xmax], [ymax, ymax], [zmin, zmin], color='black', zorder=0, lw=1)
+    ax.plot([xmin, xmin], [ymin, ymax], [zmin, zmin], color='black', zorder=0, lw=1)
+    ax.plot([xmin, xmin], [ymax, ymax], [zmin, zmax], color='black', zorder=0, lw=1)
+
+
+def label_3d_axes(xmin=0, xmax=1, ymin=0, ymax=1, zmin=0, zmax=1):
+    ax.text(xmax, ymax, zmin, '$x_1$', None, fontsize=20)
+    ax.text(xmin, ymax, zmin, '$x_2$', None, fontsize=20)
+    ax.text(xmin, ymax, zmax, '$\\mathcal{C}(x_1, x_2)$', None, fontsize=20)
+
+
+def set_tick_size(size=20):
+    ax.xaxis.set_tick_params(labelsize=size)
+    ax.yaxis.set_tick_params(labelsize=size)
+
+
 def strip_consts(graph_def, max_const_size=32):
     """Strip large constant values from graph_def."""
     strip_def = tf.GraphDef()
@@ -38,3 +75,4 @@ def show_graph(graph_def, max_const_size=32):
         <iframe seamless style="width:1200px;height:620px;border:0" srcdoc="{}"></iframe>
     """.format(code.replace('"', '&quot;'))
     display(HTML(iframe))
+

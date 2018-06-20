@@ -91,3 +91,10 @@ def reshape(l, shape):
         l = r
         r = []
     return l
+
+
+def m_s(data, axis=None):
+    m = np.mean(data, axis=axis)
+    s = np.std(data, axis=axis)
+    return m, s
+
