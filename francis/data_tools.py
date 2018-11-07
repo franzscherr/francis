@@ -109,3 +109,8 @@ def linear_smooth(data, n=50):
 def savgol_smooth(data, n=7):
     return savgol_filter(data, n, 3, mode='nearest')
 
+
+def tile_dim(data, n, axis=0):
+    n_dims = len(data.shape)
+    return np.tile(data, [1] * axis + [n] + [1] * (n_dims - axis - 1))
+
