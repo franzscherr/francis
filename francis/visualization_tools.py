@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import matplotlib.pyplot as plt
 from IPython.display import clear_output, Image, display, HTML
 
 
@@ -23,21 +24,35 @@ def remove_3d_accessoires(ax):
     ax.zaxis.set_ticks([])
 
 
-def plot_3d_axes(xmin=0, xmax=1, ymin=0, ymax=1, zmin=0, zmax=1):
+def plot_3d_axes(ax, xmin=0, xmax=1, ymin=0, ymax=1, zmin=0, zmax=1):
     ax.plot([xmin, xmax], [ymax, ymax], [zmin, zmin], color='black', zorder=0, lw=1)
     ax.plot([xmin, xmin], [ymin, ymax], [zmin, zmin], color='black', zorder=0, lw=1)
     ax.plot([xmin, xmin], [ymax, ymax], [zmin, zmax], color='black', zorder=0, lw=1)
 
 
-def label_3d_axes(xmin=0, xmax=1, ymin=0, ymax=1, zmin=0, zmax=1):
+def label_3d_axes(ax, xmin=0, xmax=1, ymin=0, ymax=1, zmin=0, zmax=1):
     ax.text(xmax, ymax, zmin, '$x_1$', None, fontsize=20)
     ax.text(xmin, ymax, zmin, '$x_2$', None, fontsize=20)
     ax.text(xmin, ymax, zmax, '$\\mathcal{C}(x_1, x_2)$', None, fontsize=20)
 
 
-def set_tick_size(size=20):
+def set_tick_size(ax, size=20):
     ax.xaxis.set_tick_params(labelsize=size)
     ax.yaxis.set_tick_params(labelsize=size)
+
+
+def pcm(_ax, _m, centering=False):
+    shp = _m.shape
+    if len(shp) > 2:
+        _indices = np.zeros((len(shp) - 2,), np.int)
+        _m = _m[_indices].reshape(shp[-2:])
+    if centering:
+        v = np.max(np.abs(_m))
+        vmin, vmax = -v, v
+    else:
+        vmin, vmax = None, None
+    p = _ax.pcolormesh(_m.T, cmap='magma', vmin=vmin, vmax=vmax)
+    plt.colorbar(p, ax=_ax)
 
 
 def strip_consts(graph_def, max_const_size=32):

@@ -114,3 +114,13 @@ def tile_dim(data, n, axis=0):
     n_dims = len(data.shape)
     return np.tile(data, [1] * axis + [n] + [1] * (n_dims - axis - 1))
 
+
+def structure_close(_s1, _s2, rtol=None, atol=None):
+    if atol is None and rtol is not None:
+        return np.all([np.allclose(a, b, rtol=rtol) for a, b in zip(_s1, _s2)])
+    if atol is not None and rtol is None:
+        return np.all([np.allclose(a, b, atol=atol) for a, b in zip(_s1, _s2)])
+    if atol is not None and rtol is not None:
+        return np.all([np.allclose(a, b, rtol=rtol, atol=atol) for a, b in zip(_s1, _s2)])
+    return np.all([np.allclose(a, b) for a, b in zip(_s1, _s2)])
+

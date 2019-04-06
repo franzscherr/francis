@@ -48,6 +48,21 @@ def loop_tf(loop_fn, inputs, persistent_initializer, transient_initializer, n=No
     return final_sequence_tensors
 
 
+def combine_flat_list(_structure, _flat_list, axis=1):
+    _combined = []
+    for i in range(len(_flat_list[0])):
+        t = []
+        for v in _flat_list:
+            t.append(v[i])
+        cc = tf.concat(t, axis)
+        _combined.append(cc)
+    return nest.pack_sequence_as(_structure, _combined)
+
+
+def tf_structure_equal(_s1, _s2):
+    return tf.reduce_all([tf.reduce_all(tf.equal(a, b)) for a, b in zip(_s1, _s2)])
+
+
 if __name__ == '__main__':
     def loop_fn(inputs, persistent, transient):
         new_transient = persistent**2
