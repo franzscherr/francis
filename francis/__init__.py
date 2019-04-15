@@ -20,6 +20,7 @@ from .timing_tools import Timer
 from .visualization_tools import remove_3d_panes, remove_3d_lines, remove_3d_accessoires, plot_3d_axes, label_3d_axes, \
     set_tick_size, pcm
 
+from .tensorflow_tools import read_summary
 
 exp_user = os.path.expanduser
 
@@ -66,5 +67,6 @@ __all__ = ['os', 'pkl', 'json', 'dt', 'now',
            'get_console_logger', 'get_file_logger',
            'equi_sample', 'datetimes_to_timestamps', 'timestamps_to_datetimes', 'inverse_dict', 'flatten', 'reshape',
            'm_s', 'linear_smooth', 'savgol_smooth', 'Timer', 'remove_3d_panes', 'remove_3d_lines',
-           'remove_3d_accessoires', 'plot_3d_axes', 'label_3d_axes', 'set_tick_size', 'pcm', 'structure_close']
+           'remove_3d_accessoires', 'plot_3d_axes', 'label_3d_axes', 'set_tick_size', 'pcm', 'structure_close',
+           'read_summary']
 
