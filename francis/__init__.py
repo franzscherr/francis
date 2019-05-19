@@ -15,7 +15,7 @@ from IPython import embed
 from .serialize import pickle, depickle
 from .plotting import figax, oax, error_curve, parallel_coordinates
 from .data_tools import equi_sample, datetimes_to_timestamps, timestamps_to_datetimes, inverse_dict, flatten, reshape, \
-    m_s, linear_smooth, savgol_smooth, structure_close
+    m_s, linear_smooth, exponential_smooth, savgol_smooth, structure_close
 from .timing_tools import Timer
 from .visualization_tools import remove_3d_panes, remove_3d_lines, remove_3d_accessoires, plot_3d_axes, label_3d_axes, \
     set_tick_size, pcm
@@ -66,7 +66,7 @@ __all__ = ['os', 'pkl', 'json', 'dt', 'now',
            'plt', 'figax', 'oax', 'parallel_coordinates', 'error_curve', 'exp_user', 'sys',
            'get_console_logger', 'get_file_logger',
            'equi_sample', 'datetimes_to_timestamps', 'timestamps_to_datetimes', 'inverse_dict', 'flatten', 'reshape',
-           'm_s', 'linear_smooth', 'savgol_smooth', 'Timer', 'remove_3d_panes', 'remove_3d_lines',
+           'm_s', 'linear_smooth', 'exponential_smooth', 'savgol_smooth', 'Timer', 'remove_3d_panes', 'remove_3d_lines',
            'remove_3d_accessoires', 'plot_3d_axes', 'label_3d_axes', 'set_tick_size', 'pcm', 'structure_close',
            'read_summary']
 
