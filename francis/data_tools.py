@@ -110,7 +110,7 @@ def exponential_smooth(data, decay=.99):
     tt = np.zeros_like(data)
     tt[0] = data[0]
     for i, t in enumerate(data[1:]):
-        tt[i + 1] = decay * tt[i] + t
+        tt[i + 1] = decay * tt[i] + (1 - decay) * t
     return tt
 
 
