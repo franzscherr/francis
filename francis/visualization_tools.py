@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import animation
 from IPython.display import clear_output, Image, display, HTML
 
 
@@ -90,4 +91,13 @@ def show_graph(graph_def, max_const_size=32):
         <iframe seamless style="width:1200px;height:620px;border:0" srcdoc="{}"></iframe>
     """.format(code.replace('"', '&quot;'))
     display(HTML(iframe))
+
+
+def animation_from_images(fig, ax, im_list):
+    ims = []
+    for i in range(len(im_list)):
+        im = ax.imshow(im_list[i])
+        ims.append([im])
+    ani = animation.ArtistAnimation(fig, ims, interval=50, blit=True, repeat_delay=500)
+    return ani
 
