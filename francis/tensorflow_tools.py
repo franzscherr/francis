@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import tensorflow as tf
 from tensorflow.contrib.framework import nest
 
@@ -61,6 +62,30 @@ def combine_flat_list(_structure, _flat_list, axis=1):
 
 def tf_structure_equal(_s1, _s2):
     return tf.reduce_all([tf.reduce_all(tf.equal(a, b)) for a, b in zip(_s1, _s2)])
+
+
+def read_summary(path):
+    events = [os.path.join(path, a) for a in os.listdir(path) if a.count('events') > 0]
+
+    d = dict()
+    for e_path in events:
+        try:
+            for e in tf.train.summary_iterator(e_path):
+                for v in e.summary.value:
+                    if v.tag not in d.keys():
+                        d[v.tag] = []
+                    d[v.tag].append((e.step, v.simple_value))
+                    if v.tag == 'loss':
+                        print(v.simple_value)
+        except:
+            pass
+
+    for k, v in d.items():
+        a = np.array(d[k])
+        sorted_inds = np.argsort(a[:, 0])
+        d[k] = a[sorted_inds]
+
+    return d
 
 
 if __name__ == '__main__':
