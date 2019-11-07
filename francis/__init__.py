@@ -22,6 +22,7 @@ from .visualization_tools import remove_3d_panes, remove_3d_lines, remove_3d_acc
 from .results import load_configs, match_configs_against
 
 from .tensorflow_tools import read_summary
+from .checkpoint_tools import get_checkpoint_variables
 
 exp_user = os.path.expanduser
 
@@ -70,5 +71,5 @@ __all__ = ['os', 'pkl', 'json', 'dt', 'now',
            'm_s', 'linear_smooth', 'exponential_smooth', 'savgol_smooth', 'Timer', 'remove_3d_panes', 'remove_3d_lines',
            'remove_3d_accessoires', 'plot_3d_axes', 'label_3d_axes', 'set_tick_size', 'pcm', 'structure_close',
            'read_summary', 'animation_from_images',
-           'load_configs', 'match_configs_against']
+           'load_configs', 'match_configs_against', 'get_checkpoint_variables']
 
